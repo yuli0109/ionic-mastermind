@@ -9,7 +9,6 @@ angular.module('starter.controllers', [])
   // The current selected icon to assign to any clicked position.
   // TODO: Needs to be set when buttons in menu.html are clicked.
   $scope.selectedIcon = 0;
-  $scope.value = 4
   $scope.switchIcon = switchIcon;
 
   function switchIcon(idx) {
@@ -28,6 +27,7 @@ angular.module('starter.controllers', [])
   createSecret()
   console.log($scope.secret);
 
+  $scope.turns = [];
 
   // TODO: You're going to need a data structure to hold a list of "turns";
   // and those "turns" are likely going to be objects...
@@ -35,7 +35,15 @@ angular.module('starter.controllers', [])
   // Initialize game state
   $scope.newGame = function() {
     // TODO: Set all data properties/structures to their beginning state
-
+    turn = {
+            picks: [null, null, null, null],
+            turnId: 0,
+            score: {
+              perfect: 0,
+              almost: 0
+            }
+    }
+    $scope.turns.push(turn);
   };
 
   // Run newGame() upon loading
@@ -53,7 +61,6 @@ angular.module('starter.controllers', [])
     // TODO: Show winModal IF turn is correct. Put line below in an if statement.
     // $scope.winModal.show();
   };
-
 
   // Create the winner modal.
   $ionicModal.fromTemplateUrl('templates/winner.html', {

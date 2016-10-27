@@ -14,14 +14,14 @@
 
     <ion-list>
       <!-- TODO: Repeat the ion-item below for each turn -->
-      <ion-item class="row turn">
+      <ion-item class="row turn" np-repeat="turn in turns track by $index">
 
         <div class="col col-10 text-center turn-num">
           <!-- TODO:
             Display turn number here (currently hard-coded to "1").
             Hint - gotta love that $index in a ng-repeat :)
           -->
-          1
+
         </div>
         <div class="col text-center left-border">
           <!-- TODO:
@@ -35,11 +35,10 @@
             to the currently selected icon.
           -->
           <div class="button-bar">
-
-            <button class="button button-icon "></button>
-            <button class="button button-icon icon //add-class-here"></button>
-            <button class="button button-icon icon //add-class-here"></button>
-            <button class="button button-icon icon //add-class-here"></button>
+            <button class="button button-icon icon {{icons[turn.picks[0]]||'ion-more'}}" ng-click="turn.picks[0]=selectedIcon"></button>
+            <button class="button button-icon icon {{icons[turn.picks[1]]||'ion-more'}}" ng-click="turn.picks[1]=selectedIcon"></button>
+            <button class="button button-icon icon {{icons[turn.picks[2]]||'ion-more'}}" ng-click="turn.picks[2]=selectedIcon"></button>
+            <button class="button button-icon icon {{icons[turn.picks[3]]||'ion-more'}}" ng-click="turn.picks[3]=selectedIcon"></button>
           </div>
         </div>
         <div class="col col-20 text-center left-border">
