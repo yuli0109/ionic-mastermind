@@ -14,7 +14,7 @@
 
     <ion-list>
       <!-- TODO: Repeat the ion-item below for each turn -->
-      <ion-item class="row turn" np-repeat="turn in turns track by $index">
+      <ion-item class="row turn" ng-repeat="turn in turns track by $index">
 
         <div class="col col-10 text-center turn-num">
           <!-- TODO:
@@ -45,9 +45,11 @@
           <div class="score-wrap">
             <!-- TODO:
               If this turn is the current turn, display a [score] button
-              that's disabled unless an icon has been chosen for all positions.
+              that's disabled unless an icon has been chosen for all positions. -->
 
-              If not current turn, display the score for turn.
+            <!-- if first turn has been pushed, enable button-->
+            <button ng-click="checkScore()" ng-disabled="disableButton()">score</button>
+            <!-- If not current turn, display the score for turn.
               The score should show a <div> with a class of 'perfect'
               for each position with correct icon and position
               AND a <div> with a class of 'almost' for each position

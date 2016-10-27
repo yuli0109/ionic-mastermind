@@ -24,31 +24,41 @@ angular.module('starter.controllers', [])
       $scope.secret.push(secretDigit());
     }
   }
-  createSecret()
   console.log($scope.secret);
 
-  $scope.turns = [];
 
   // TODO: You're going to need a data structure to hold a list of "turns";
   // and those "turns" are likely going to be objects...
 
   // Initialize game state
   $scope.newGame = function() {
+    createSecret();
+    console.log($scope.secret)
     // TODO: Set all data properties/structures to their beginning state
-    turn = {
-            picks: [null, null, null, null],
-            turnId: 0,
-            score: {
-              perfect: 0,
-              almost: 0
-            }
-    }
-    $scope.turns.push(turn);
+    $scope.turns = [];
+    // var turn = {
+    //         picks: [null, null, null, null],
+    //         turnId: 0,
+    //         score: {
+    //           perfect: 0,
+    //           almost: 0
+    //         }
+    // }
+    $scope.turns.push({
+      picks: [null, null, null, null],
+      turnId: 0,
+      score: {
+        perfect: 0,
+        almost: 0
+      }
+    });
   };
 
   // Run newGame() upon loading
   $scope.newGame();
-
+  $scope.checkPicks = function(turn){
+    console.log(turn)
+  }
   /*
   TODO: Call this function when the user clicks a 'score' button.
         The 'score' button should remain disabled until all positions have a value.
@@ -62,6 +72,16 @@ angular.module('starter.controllers', [])
     // $scope.winModal.show();
   };
 
+  $scope.disableButton = function() {
+    return $scope.turns[$scope.turns.length - 1].picks.some(pick => pick === null);
+  }
+
+  $scope.checkScore = checkScore
+
+  function checkScore() {
+    console.log('Checking score....');
+  }
+
   // Create the winner modal.
   $ionicModal.fromTemplateUrl('templates/winner.html', {
     scope: $scope
@@ -74,5 +94,6 @@ angular.module('starter.controllers', [])
     $scope.newGame();
     $scope.winModal.hide();
   };
+
 
 });
